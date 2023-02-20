@@ -7,6 +7,61 @@ window.geometry('700x750')
 window.config(bg="gray")
 
 
+def button_click(number):
+    current = box.get()     # To enter thr number correct way as we need
+    box.delete(0, END)
+    box.insert(0, str(current) + str(number))  # To insert a number to display
+
+def button_clear():
+     box.delete(0, END)
+
+def button_add():
+    first_number = box.get()
+    global f_num
+    global math
+    math = "Addition"
+    f_num = float(first_number)
+    box.delete(0, END)
+
+def button_mult():
+    first_number = box.get()
+    global f_num
+    global math
+    math = "Multiplication"
+    f_num = float(first_number)
+    box.delete(0, END)
+
+def button_div():
+    first_number = box.get()
+    global f_num
+    global math
+    math = "Division"
+    f_num = float(first_number)
+    box.delete(0, END)
+
+
+def button_subtract():
+    first_number = box.get()
+    global f_num
+    global math
+    math = "Subtraction"
+    f_num = float(first_number)
+    box.delete(0, END)
+
+
+def button_equal():
+    second_number = box.get()
+    box.delete(0, END)
+    if math == "Addition":
+        box.insert(0, f_num + float(second_number))
+    if math == "Subtraction":
+        box.insert(0, f_num - float(second_number))
+    if math == "Division":
+        box.insert(0, f_num / float(second_number))
+    if math == "Multiplication":
+        box.insert(0, f_num * float(second_number))
+
+
 box: Entry = Entry(window, width=77, font=('Arial', 12), justify=RIGHT)
 box.grid(row=0, columnspan=5, padx=0, pady=50, ipadx=0, ipady=20, )
 
