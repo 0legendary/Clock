@@ -3,7 +3,7 @@ from tkinter import Entry
 
 window = Tk()
 window.title("Calculator")
-window.geometry('700x750')
+window.geometry('1920x1080')
 window.config(bg="grey12")
 window.eval('tk::PlaceWindow . center')
 
@@ -69,7 +69,7 @@ def button_equal():
 
 
 
-box: Entry = Entry(window, width=74, font=('Arial', 12), justify=RIGHT)
+box: Entry = Entry(window, width=74, font=('Arial', 12), justify=RIGHT, bg='grey60')
 box.place(relx=0.32, rely=0.29, height=60)
 
 button7 = Button(text="7", height=7, width=13, foreground='red', bg='grey70',  command=lambda: button_click(7))
