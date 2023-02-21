@@ -54,14 +54,19 @@ def button_subtract():
 def button_equal():
     second_number = box.get()
     box.delete(0, END)
-    if math == "Addition":
-        box.insert(0, f_num + float(second_number))
-    if math == "Subtraction":
-        box.insert(0, f_num - float(second_number))
-    if math == "Division":
-        box.insert(0, f_num / float(second_number))
-    if math == "Multiplication":
-        box.insert(0, f_num * float(second_number))
+    try:
+        if math == "Addition":
+            box.insert(0, f_num + float(second_number))
+        if math == "Subtraction":
+            box.insert(0, f_num - float(second_number))
+        if math == "Division":
+            box.insert(0, f_num / float(second_number))
+        if math == "Multiplication":
+            box.insert(0, f_num * float(second_number))
+    except:
+        box.delete(0, END)
+        box.insert(0, "Error")
+
 
 
 box: Entry = Entry(window, width=74, font=('Arial', 12), justify=RIGHT)
