@@ -15,6 +15,8 @@ def button_click(number):
 def button_clear():
      box.delete(0, END)
 
+def button_back():
+    box.delete(len(box.get())-1)
 def button_add():
     first_number = box.get()
     global f_num
@@ -130,9 +132,13 @@ button_div = Button(text="/", height=7, width=13, command=button_div)
 button_div.grid(row=7, column=3, padx=5, pady=5)
 button_div.place(relx=0.53, rely=0.385)
 
-button_clear = Button(text="C", height=15, width=13, command=button_clear)
+button_clear = Button(text="C", height=7, width=13, command=button_clear)
 button_clear.grid(row=7, column=4, rowspan=2, columnspan=2, padx=5, pady=5)
 button_clear.place(relx=0.6, rely=0.385)
+
+button_back = Button(text="CE", height=7, width=13, command=button_back)
+button_back.grid(row=7, column=4, rowspan=2, columnspan=2, padx=5, pady=5)
+button_back.place(relx=0.6, rely=0.53)
 
 
 window.mainloop()
