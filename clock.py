@@ -1,4 +1,6 @@
 from tkinter import *
+import math
+import time
 
 # Creating a window with adjustment
 frame = Tk()
@@ -18,5 +20,17 @@ radius = 350
 point_radius = 5
 circle.create_oval(center_x - radius, center_y - radius, center_x + radius, center_y + radius,
                    outline='grey32', width=8, )
+
+# Needles of the clock (length)
+second_hand_length = radius * 0.8
+minute_hand_length = radius * 0.6
+hour_hand_length = radius * 0.5
+
+# Needle config
+second_hand = circle.create_line(0, 0, 0, 0, width=2, fill='red')
+
+minute_hand = circle.create_line(0, 0, 0, 0, width=4, fill='blue')
+
+hour_hand = circle.create_line(0, 0, 0, 0, width=4, fill='black')
 
 frame.mainloop()
