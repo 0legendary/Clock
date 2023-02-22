@@ -22,18 +22,40 @@ circle.create_oval(center_x - radius, center_y - radius, center_x + radius, cent
                    outline='grey32', width=8, )
 
 # Needles of the clock (length)
-second_hand_length = radius * 0.8
-minute_hand_length = radius * 0.9
+second_hand_length = radius * 0.9
+minute_hand_length = radius * 0.7
 hour_hand_length = radius * 0.5
 
 # Needle config
-second_hand = circle.create_line(0, 0, 0, 0, width=2, fill='red')
+hour_hand = circle.create_line(0, 0, 0, 0, width=10, fill='black', capstyle='round')
 
-minute_hand = circle.create_line(0, 0, 0, 0, width=4, fill='blue')
+minute_hand = circle.create_line(0, 0, 0, 0, width=6, fill='black', capstyle='round')
 
-hour_hand = circle.create_line(0, 0, 0, 0, width=4, fill='black')
+second_hand = circle.create_line(0, 0, 0, 0, width=2, fill='red', capstyle='projecting', joinstyle='bevel')
 
+for hour in range(1, 13):
 
+    angle = math.radians(hour * 30)  # there are 12 hours on a clock, so 360 / 12 = 30 degrees per hour
+
+    x1 = center_x + (radius - 10) * math.sin(angle)
+    y1 = center_y - (radius - 10) * math.cos(angle)
+    x2 = center_x + radius * math.sin(angle)
+    y2 = center_y - radius * math.cos(angle)
+
+    # hour marker line
+    circle.create_line(x1, y1, x2, y2, width=6, fill='black')
+
+for hour in range(1, 60):
+
+    angle = math.radians(hour * 6)  # there are 60 min on a clock, so 360 / 60 = 6 degrees per hour
+
+    x1 = center_x + (radius - 10) * math.sin(angle)
+    y1 = center_y - (radius - 10) * math.cos(angle)
+    x2 = center_x + radius * math.sin(angle)
+    y2 = center_y - radius * math.cos(angle)
+
+    # minute marker line
+    circle.create_line(x1, y1, x2, y2, width=2, fill='grey12')
 def update_clock():
     current_time = time.localtime()
     seconds = current_time.tm_sec
@@ -65,5 +87,6 @@ def update_clock():
 
 
 update_clock()
+
 
 frame.mainloop()
