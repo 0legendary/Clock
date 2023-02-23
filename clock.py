@@ -1,4 +1,5 @@
 from tkinter import *
+import datetime
 import math
 import time
 
@@ -33,20 +34,7 @@ minute_hand = circle.create_line(0, 0, 0, 0, width=6, fill='black', capstyle='ro
 
 second_hand = circle.create_line(0, 0, 0, 0, width=2, fill='red', capstyle='projecting', joinstyle='bevel')
 
-for hour in range(1, 13):
-
-    angle = math.radians(hour * 30)  # there are 12 hours on a clock, so 360 / 12 = 30 degrees per hour
-
-    x1 = center_x + (radius - 10) * math.sin(angle)
-    y1 = center_y - (radius - 10) * math.cos(angle)
-    x2 = center_x + radius * math.sin(angle)
-    y2 = center_y - radius * math.cos(angle)
-
-    # hour marker line
-    circle.create_line(x1, y1, x2, y2, width=6, fill='black')
-
 for hour in range(1, 60):
-
     angle = math.radians(hour * 6)  # there are 60 min on a clock, so 360 / 60 = 6 degrees per hour
 
     x1 = center_x + (radius - 10) * math.sin(angle)
@@ -56,6 +44,19 @@ for hour in range(1, 60):
 
     # minute marker line
     circle.create_line(x1, y1, x2, y2, width=2, fill='grey12')
+
+for hour in range(1, 13):
+    angle = math.radians(hour * 30)  # there are 12 hours on a clock, so 360 / 12 = 30 degrees per hour
+
+    x1 = center_x + (radius - 10) * math.sin(angle)
+    y1 = center_y - (radius - 10) * math.cos(angle)
+    x2 = center_x + radius * math.sin(angle)
+    y2 = center_y - radius * math.cos(angle)
+
+    # hour marker line
+    circle.create_line(x1, y1, x2, y2, width=4, fill='black')
+
+
 def update_clock():
     current_time = time.localtime()
     seconds = current_time.tm_sec
@@ -86,7 +87,27 @@ def update_clock():
     circle.after(10, update_clock)
 
 
-update_clock()
+time_label = Label(circle, font=('FreeMono', 18))
+date_label = Label(circle, font=('FreeMono', 18))
 
+
+def update_time():
+    current_time = time.strftime("%H:%M:%S")
+    time_label.config(text=current_time, bg='grey18', foreground="grey71", )
+    time_label.after(1000, update_time)  # to update every second
+    time_label.place(relx=.87, rely=.95)
+
+
+def update_date():
+    current_date = datetime.date.today()
+    date_format = current_date.strftime('%d:%m:%Y')
+    date_label.config(text=date_format, bg='grey18', foreground="black")
+    date_label.after(1000, update_date)  # to update every second
+    date_label.place(relx=.85, rely=.01)
+
+
+update_date()
+update_time()
+update_clock()
 
 frame.mainloop()
